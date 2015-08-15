@@ -23,6 +23,10 @@ and type in
 
 build\gyp\gyp.bat --depth=. pomelo.gyp -Dlibrary=static_library -DTO=pc
 then open pomelo.sln in visual studio and you can build libpomelo in windows
+
+// libpomelo2实际调用的参数：
+libpomelo2>gyp --depth=. pomelo.gyp -Dlibrary=shared_library -Duse_sys_openssl=false
+// 编译后libpomelo2目录下生产Default目录，其中存放的是vs编译后的一些exe和相关lib
 ```
 执行完，生产vs工程，用vs打开，编译会生产`libuv.lib`、`libpomelo.lib`和`jansson.lib`三个库，将这些库引用到cocos的vs工程中即可（相关的路径和lib引用的配置问题）
 
