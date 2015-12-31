@@ -22,3 +22,7 @@
 ```java
 overridePendingTransition(R.anim.push_bottom_in, R.anim.push_bottom_out);
 ```
+
+
+
+http://www.oschina.net/question/54100_30266
