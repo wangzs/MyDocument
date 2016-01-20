@@ -99,7 +99,7 @@ Observable.just("Hello, world!")
 ##### [Operator接口文档][5]
 * latMap操作符
 flatMap()操作使用原本要被Observable发送的事件，创建一个新的Observable。
-![](./img/flatMap.c.png)
+![](../img/flatMap.c.png)
 
 
 
