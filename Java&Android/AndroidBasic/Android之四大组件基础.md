@@ -84,7 +84,7 @@ startActivity(intent);
 	}
 	```
 	* Intent 内部有一个bundle，可以直接向Intent中塞数据也可以
-	 ```java
+	```java
 	 // CurrentActivity中的发送
 	Intent intent =new Intent(CurrentActivity.this, NewActivity.class);
 	intent.putExtra("key0", true);
@@ -97,7 +97,7 @@ startActivity(intent);
 		String key1 = intent.getString("key1");
 		// handle key0 and key1
 	}
-	```
+```
 * 使用SharedPreferences进行Activity之间的通信
 SharedPreferences是为android应用提供的一种持久化的数据存储方式。它存储的数据在`/data/data/app_packagename/shared_prefs/`目录下。应用下的所有activity都可以访问处理。
 	```java
@@ -129,7 +129,7 @@ SharedPreferences是为android应用提供的一种持久化的数据存储方�
 		if (REQUEST_CODE == resultCode && RESULT_OK == resultCode) {
 			String result = data.getExtras().getString("result"); // 获取B返回的数据
 		}
-    }
+	  }
 
 	// B中销毁操作前的一些数据传输设置
 	Intent intent = new Intent();
@@ -142,25 +142,25 @@ SharedPreferences是为android应用提供的一种持久化的数据存储方�
 ## 2. Service
 #### 2.1 Service的使用
 * 创建一个继承于android.app.Service的java类
-	```java
-	public class TestService extends Service {
-    @Override
-    public void onCreate() {
-        super.onCreate();
-    }
-    // service运行时做的操作
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        return super.onStartCommand(intent, flags, startId);
-    }
-	// 使用bindService()方式启动service时会调用到onBind函数（抽象方法，子类必须实现）
-	private SimpleBinder binder = new SimpleBinder();
-    @Override
-    public IBinder onBind(Intent intent) {
-        return binder;	// 以startServie启动service时，可以返回一个null
-    }
-}
-	```
+```java
+public class TestService extends Service {
+      @Override
+      public void onCreate() {
+          super.onCreate();
+      }
+      // service运行时做的操作
+      @Override
+      public int onStartCommand(Intent intent, int flags, int startId) {
+          return super.onStartCommand(intent, flags, startId);
+      }
+      // 使用bindService()方式启动service时会调用到onBind函数（抽象方法，子类必须实现）
+      private SimpleBinder binder = new SimpleBinder();
+      @Override
+      public IBinder onBind(Intent intent) {
+          return binder;	// 以startServie启动service时，可以返回一个null
+      }
+  }
+```
 * 在AndroidManifest.xml文件中声明该类
 	```xml
 	<service android:name=".TestService">
@@ -224,14 +224,14 @@ SharedPreferences是为android应用提供的一种持久化的数据存储方�
 ## 3. Broadcast Receiver
 #### 3.1 Broadcast Receiver的使用
 * 创建一个继承于android.content.BroadcastReceiver的java类
-	```java
-	public class TestBR extends BroadcastReceiver {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			// 处理接收的事件，intent可以携带数据
-		}
+```java
+public class TestBR extends BroadcastReceiver {
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		// 处理接收的事件，intent可以携带数据
 	}
-	```
+}
+```
 * 注册Receiver的两种方式
 	* 静态注册：直接在AndroidManifest.xml中注册，任何时候都可以收到broadcast
 	```java
@@ -301,34 +301,34 @@ LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 ![](../img/contentprovider.jpg)
 #### 4.1 Content provider的使用
 * 创建一个继承于android.content.ContentProvider的java类
-	```java
-	public class TestContentProvider extends ContentProvider {
-		@Override
-		public boolean onCreate() {
-			return false;
-		}
-		@Override
-		public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-			return null;
-		}
-		@Override
-		public String getType(Uri uri) {
-			return null;
-		}
-		@Override
-		public Uri insert(Uri uri, ContentValues values) {
-			return null;
-		}
-		@Override
-		public int delete(Uri uri, String selection, String[] selectionArgs) {
-			return 0;
-		}
-		@Override
-		public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-			return 0;
-		}
-	}
-	```
+```java
+  public class TestContentProvider extends ContentProvider {
+      @Override
+      public boolean onCreate() {
+          return false;
+      }
+      @Override
+      public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+          return null;
+      }
+      @Override
+      public String getType(Uri uri) {
+          return null;
+      }
+      @Override
+      public Uri insert(Uri uri, ContentValues values) {
+          return null;
+      }
+      @Override
+      public int delete(Uri uri, String selection, String[] selectionArgs) {
+          return 0;
+      }
+      @Override
+      public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+          return 0;
+      }
+  }
+```
 * Uri在ContentProvider中的使用
 Uri的一般格式：<srandard_prefix>://<authority>/<data_path>/<id>
 是Android中的一种资源访问方式。在contentprovider中格式为：content://<ContentProvide名>/<请求的数据类型>/<请求的特定数据>

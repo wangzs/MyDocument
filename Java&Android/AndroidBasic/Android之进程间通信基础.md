@@ -183,12 +183,17 @@ client向server注册回调函数，供client的非主动调用的情况下，se
 
 ## 2. IPC的机制
 * GNU/Linux:
-	> * 信号Signal
- * 管道Pipe
- * Socket
- * 信号量Semaphore
- * 消息队列Message queue
- * 共享内存
+	> * 信号Signals: Oldest IPC method. A process can send signals to processes with the
+same uid and gid or in the same process group
+ * 管道Pipe: Pipes are unidirectional bytestreams that connect the standard output
+from one process with the standard input of another process.
+ * Socket: A socket is an endpoint of bidirectional communication. Two processes
+can communicate with bytestreams by opening the same socket.
+ * 信号量Semaphore: A semaphore is a shared variable that can be read and written by
+many processes
+ * 消息队列Message queue: Processes can write a message to a message queue that is readable for other Processes
+ * 共享内存: A location in system memory mapped into virtual address
+spaces of two processes, that each process can fully access
 
 * Android：
 	> * Binder： 轻量级RPC（Remote Procedure Communication）机制
